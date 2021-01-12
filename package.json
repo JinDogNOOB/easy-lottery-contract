@@ -1,0 +1,26 @@
+{
+  "name": "easy-lottery-contract",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JinDogNOOB/easy-lottery-contract.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JinDogNOOB/easy-lottery-contract/issues"
+  },
+  "homepage": "https://github.com/JinDogNOOB/easy-lottery-contract#readme",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.2.1",
+    "dotenv": "^8.2.0"
+  }
+}

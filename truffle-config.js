@@ -1,8 +1,14 @@
-import HDWalletProvider from 'truffle-hdwallet-provider'
-var mnemonic = "some string";
-var accessToken = "some secret token";
+require('dotenv').config();
+/**
+ * create .env file and write below
+ * MNENOMIC = // Your metamask's recovery words
+ * INFURA_API_KEY = // Your Infura API Key after its registration
+ */
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+
 // 배포관련 글 여기 참고
 // https://medium.com/blockcentric/how-to-deploy-multiple-smart-contracts-using-truffle-5a7188a24366
+// https://medium.com/coinmonks/deploy-your-smart-contract-directly-from-truffle-with-infura-ba1e1f1d40c2
 
 /**
  * Use this file to configure your truffle project. It's seeded with some
@@ -84,14 +90,25 @@ module.exports = {
       port : "port",
       network_id: "id",
     },
-    sometestnet: {
-      provider: function(){
-        return new HDWalletProvider(
-          mnemonic,
-          "testnet address + access token"
-        )
-      }
+    main: {
+      provider: () => new HDWalletProvider({
+        mnemonic : process.env.MNENOMIC,
+        provider : "https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY
+      }),
+      network_id: 1,
+      gas: 3000000,
+      gasPrice: 10000000000
+    },
+    ropsten: {
+      provider: () => new HDWalletProvider({
+        mnemonic : process.env.MNENOMIC,
+        provider : "https://ropsten.infura.io/v3/" + process.env.INFURA_API_KEY
+      }),
+      network_id: 3,
+      gas: 3000000,
+      gasPrice: 10000000000
     }
+
   },
 
   // Set default mocha options here, use special reporters etc.
