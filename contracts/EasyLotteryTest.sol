@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: WTFPL
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.7.0 <0.9.0;
 
 
 
@@ -53,7 +53,7 @@ contract EasyLotteryTest{
         require(msg.value >= 1500000000000000, "msg.value must be higher than 0.0015ETH");
         require(START_BLOCK_NUMBER+PURCHASE_PERIOD > block.number, "can't do this after startBlockNumber+PURCHASE_PERIOD");
 
-        PARTICIPANTS[GAME_NUMBER][number].push(msg.sender);
+        PARTICIPANTS[GAME_NUMBER][number].push(payable(msg.sender));
         GATHERED_WEI += msg.value;
         return true;
     }
@@ -73,7 +73,7 @@ contract EasyLotteryTest{
             startNewGame();
         }else{
             // 당첨자 존재 => 당첨자에게 송금
-            sendETHtoWinners(msg.sender);
+            sendETHtoWinners(payable(msg.sender));
             GATHERED_WEI = 0; // 모인액수 초기화
             startNewGame();
             result = true;
