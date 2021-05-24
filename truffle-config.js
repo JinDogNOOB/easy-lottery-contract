@@ -4,7 +4,20 @@ require('dotenv').config();
  * MNENOMIC = // Your metamask's recovery words
  * INFURA_API_KEY = // Your Infura API Key after its registration
  */
+console.log(process.env.MNENOMIC);
+console.log(process.env.INFURA_API_KEY);
+
 const HDWalletProvider = require("@truffle/hdwallet-provider");
+const mainProvider = new HDWalletProvider({
+  mnemonic : {phrase:process.env.MNENOMIC},
+  providerOrUrl : "https://mainnet.infura.io/v3/" + process.env.INFURA_PJ_ID
+});
+const ropstenProvider = new HDWalletProvider({
+  mnemonic : {phrase:process.env.MNENOMIC},
+  providerOrUrl : "https://ropsten.infura.io/v3/" + process.env.INFURA_PJ_ID
+});
+
+
 
 // 배포관련 글 여기 참고
 // https://medium.com/blockcentric/how-to-deploy-multiple-smart-contracts-using-truffle-5a7188a24366
@@ -91,19 +104,13 @@ module.exports = {
       network_id: "id",
     },
     main: {
-      provider: () => new HDWalletProvider({
-        mnemonic : process.env.MNENOMIC,
-        provider : "https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY
-      }),
+      provider: mainProvider,
       network_id: 1,
       gas: 3000000,
       gasPrice: 10000000000
     },
     ropsten: {
-      provider: () => new HDWalletProvider({
-        mnemonic : process.env.MNENOMIC,
-        provider : "https://ropsten.infura.io/v3/" + process.env.INFURA_API_KEY
-      }),
+      provider: ropstenProvider,
       network_id: 3,
       gas: 3000000,
       gasPrice: 10000000000
