@@ -1,6 +1,5 @@
 # easy-lottery-contract
 * steps
-<<<<<<< HEAD
     - #npm install
     - create .env
     ```
@@ -10,12 +9,10 @@
     ```
     - #truffle compile
     - #truffle migrate --network (main or ropsten)
-=======
     - `#npm install1`
     - `create .env`
     - `#truffle compile`
     - `#truffle migrate --network (main or ropsten)`
->>>>>>> 2bb6ef095194d73fda7244e5552d41ae6a91047e
 * ropsten faucet
     - https://faucet.dimensions.network/
 # 현황
